@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edi test | Professional Photographer</title>
+    <title>Jane Doe | Professional Photographer</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -16,18 +15,23 @@
     <header id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <!-- Replace 'logo.png' with your actual logo -->
                 <a href="#home">
                     <img src="https://via.placeholder.com/150x50?text=YOUR+LOGO" alt="Photographer Logo">
                 </a>
             </div>
-            <nav>
+            <nav class="nav-wrapper">
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#about" data-i18n="nav_about">About Me</a></li>
+                    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
                 </ul>
+                <!-- Language Switcher -->
+                <select id="lang-switch" class="lang-switch">
+                    <option value="en">EN</option>
+                    <option value="cs">CS</option>
+                    <option value="ru">RU</option>
+                </select>
             </nav>
         </div>
     </header>
@@ -35,9 +39,9 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Capturing Life's Most Beautiful Moments.</h1>
-            <p>Fine Art & Lifestyle Photography</p>
-            <a href="#portfolio" class="btn">View My Work</a>
+            <h1 data-i18n="hero_title">Capturing Life's Most Beautiful Moments.</h1>
+            <p data-i18n="hero_subtitle">Fine Art & Lifestyle Photography</p>
+            <a href="#portfolio" class="btn" data-i18n="hero_btn">View My Work</a>
         </div>
     </section>
 
@@ -45,14 +49,13 @@
     <section id="about" class="about section-padding">
         <div class="container about-container">
             <div class="about-image">
-                <!-- Replace with your picture -->
-                <img src="https://via.placeholder.com/400x500?text=Your+Portrait" alt="Picture of the Photographer">
+                <img src="https://via.placeholder.com/400x500?text=Your+Portrait" alt="Photographer">
             </div>
             <div class="about-text">
-                <h2>About Me</h2>
+                <h2 data-i18n="about_title">About Me</h2>
                 <div class="divider"></div>
-                <p>Placeholder</p>
-                <p>Placeholder</p>
+                <p data-i18n="about_p1">Hello! I'm a passionate photographer specializing in capturing raw, authentic moments. With a keen eye for detail and a love for natural light, I strive to tell your unique story through my lens.</p>
+                <p data-i18n="about_p2">Whether it's an intimate wedding, a cozy family session, or a creative editorial shoot, my goal is to make you feel comfortable and beautiful. Let's create timeless art together.</p>
             </div>
         </div>
     </section>
@@ -60,10 +63,9 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section-padding">
         <div class="container">
-            <h2 class="text-center">Portfolio</h2>
+            <h2 class="text-center" data-i18n="portfolio_title">Portfolio</h2>
             <div class="divider center-divider"></div>
             <div class="portfolio-grid">
-                <!-- Replace these with your actual photos -->
                 <div class="portfolio-item"><img src="https://via.placeholder.com/600x400?text=Portfolio+1" alt="Portfolio 1" class="gallery-img"></div>
                 <div class="portfolio-item"><img src="https://via.placeholder.com/400x600?text=Portfolio+2" alt="Portfolio 2" class="gallery-img"></div>
                 <div class="portfolio-item"><img src="https://via.placeholder.com/600x400?text=Portfolio+3" alt="Portfolio 3" class="gallery-img"></div>
@@ -77,31 +79,32 @@
     <!-- Contact Section -->
     <section id="contact" class="contact section-padding">
         <div class="container">
-            <h2 class="text-center">Get In Touch</h2>
+            <h2 class="text-center" data-i18n="contact_title">Get In Touch</h2>
             <div class="divider center-divider"></div>
-            <p class="text-center contact-subtitle">I'd love to hear from you. Fill out the form below to inquire about sessions, pricing, or just to say hi!</p>
+            <p class="text-center contact-subtitle" data-i18n="contact_subtitle">I'd love to hear from you. Fill out the form below to inquire about sessions, pricing, or just to say hi!</p>
             
             <form id="contact-form" class="contact-form">
                 <div class="input-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <!-- Note the data-i18n attributes on inputs for placeholders -->
+                    <input type="text" id="name" name="name" placeholder="Your Name" data-i18n="form_name" required>
                 </div>
                 <div class="input-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" data-i18n="form_email" required>
                 </div>
                 <div class="input-group">
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" data-i18n="form_message" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-submit">Send Message</button>
+                <button type="submit" class="btn btn-submit" data-i18n="form_btn">Send Message</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Edi. All Rights Reserved.</p>
+        <p data-i18n="footer_text">&copy; 2026 Jane Doe Photography. All Rights Reserved.</p>
     </footer>
 
-    <!-- Lightbox for viewing full images -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <span class="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">

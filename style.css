@@ -85,7 +85,7 @@ ul {
     background-color: var(--powder-blue-dark);
 }
 
-/* --- NAVIGATION --- */
+/* --- NAVIGATION & LOGO FIX --- */
 header {
     position: fixed;
     top: 0;
@@ -94,19 +94,39 @@ header {
     backdrop-filter: blur(5px);
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    padding: 15px 0;
-    transition: padding 0.3s ease;
+    height: 80px; /* Die Bar bleibt fest auf dieser Höhe */
+    display: flex;
+    align-items: center;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* Wichtig für die absolute Position des Logos */
+}
+
+.logo {
+    position: absolute;
+    top: -20px; /* Schiebt das Logo leicht nach oben über den Rand */
+    left: 0;
 }
 
 .logo img {
-    height: 200px;
+    height: 120px; /* Deine gewünschte Logogröße */
+    width: auto;
     object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+.nav-wrapper {
+    margin-left: auto; /* Schiebt die Links nach rechts */
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .nav-links {
@@ -139,6 +159,16 @@ header {
     width: 100%;
 }
 
+/* Language Switcher Styling */
+.lang-switch {
+    background-color: transparent;
+    border: 1px solid var(--powder-blue);
+    color: var(--dusty-rose);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 /* --- HERO SECTION --- */
 .hero {
     height: 100vh;
@@ -147,10 +177,6 @@ header {
     justify-content: center;
     text-align: center;
     background-color: var(--dusty-rose-light);
-    /* OPTIONAL: Add a background image here */
-    /* background-image: url('images/hero-bg.jpg'); */
-    /* background-size: cover; */
-    /* background-position: center; */
     padding-top: 80px;
 }
 
@@ -204,10 +230,6 @@ header {
     background-color: var(--white);
 }
 
-.portfolio h2 {
-    font-size: 2.5rem;
-}
-
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -235,11 +257,6 @@ header {
 }
 
 /* --- CONTACT SECTION --- */
-.contact-subtitle {
-    margin-bottom: 40px;
-    color: var(--text-light);
-}
-
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -257,14 +274,6 @@ header {
     background-color: var(--bg-light);
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-    outline: none;
-    border-color: var(--dusty-rose);
-    box-shadow: 0 0 5px var(--dusty-rose-light);
 }
 
 .btn-submit {
@@ -277,10 +286,9 @@ footer {
     padding: 30px;
     background-color: var(--text-dark);
     color: var(--white);
-    font-size: 0.9rem;
 }
 
-/* --- LIGHTBOX (For Image Zoom) --- */
+/* --- LIGHTBOX --- */
 .lightbox {
     display: none; 
     position: fixed;
@@ -301,12 +309,6 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: zoom 0.3s ease;
-}
-
-@keyframes zoom {
-    from {transform: translate(-50%, -50%) scale(0.8)} 
-    to {transform: translate(-50%, -50%) scale(1)}
 }
 
 .close-lightbox {
@@ -315,27 +317,37 @@ footer {
     right: 35px;
     color: #f1f1f1;
     font-size: 40px;
-    font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s;
-}
-
-.close-lightbox:hover {
-    color: var(--dusty-rose);
 }
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
-        gap: 15px;
+        padding-top: 60px; /* Platz für das Logo schaffen */
     }
     
+    .logo {
+        position: relative;
+        top: 0;
+        margin-bottom: 10px;
+    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    header {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .nav-wrapper {
+        flex-direction: column;
+        gap: 10px;
+    }
+
     .about-container {
         flex-direction: column;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
     }
 }

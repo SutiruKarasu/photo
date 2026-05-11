@@ -111,7 +111,7 @@ header {
 
 .logo {
     position: absolute;
-    top: -20px; /* Schiebt das Logo leicht nach oben über den Rand */
+    top: -40px; /* Schiebt das Logo leicht nach oben über den Rand */
     left: 0;
 }
 

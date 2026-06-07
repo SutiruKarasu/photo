@@ -1,99 +1,119 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. LANGUAGE SWITCHER LOGIC ---
-    let translations = {};
-    const langSwitch = document.getElementById("lang-switch");
 
-    // Fetch the JSON file
-    fetch('lang.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            translations = data;
-            
-            // Check if user has a saved language preference in their browser
-            const savedLang = localStorage.getItem('selectedLang');
-            if(savedLang && translations[savedLang]) {
-                langSwitch.value = savedLang;
-                updateLanguage(savedLang);
-            } else {
-                // Default is English
-                updateLanguage('en');
-            }
-        })
-        .catch(error => console.error('Error loading lang.json:', error));
+    const typewriterElement = document.getElementById("typewriter");
+    const phrases = [
+        "Senior UX Designer",
+        "Frontend Developer",
+        "Backend Developer",
+        "Problem Solver"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-    // Function to replace text on the screen
-    function updateLanguage(lang) {
-        const elements = document.querySelectorAll('[data-i18n]');
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
         
-        elements.forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if(translations[lang] && translations[lang][key]) {
-                // If the element is an input or textarea, change the placeholder instead of the text
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translations[lang][key];
-                } else {
-                    el.textContent = translations[lang][key];
+        if (isDeleting) {
+            typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let typingSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typingSpeed = 2000; // Pause at end
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before new word
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+    type();
+
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                
+       
+                if (entry.target.id === 'about') {
+                    const counters = document.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const updateCount = () => {
+                            const count = +counter.innerText;
+                            const inc = target / 50; // Speed
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + inc);
+                                setTimeout(updateCount, 40);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
                 }
+                observer.unobserve(entry.target); // Animates only once
             }
         });
-        
-        // Update HTML lang attribute for SEO
-        document.documentElement.lang = lang;
-        // Save choice to localStorage so it remembers the user next time
-        localStorage.setItem('selectedLang', lang);
+    }, observerOptions);
+
+    document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+
+    const modal = document.getElementById("impressum-modal");
+    const btn = document.getElementById("open-impressum");
+    const span = document.getElementsByClassName("close-btn")[0];
+
+    btn.onclick = (e) => { e.preventDefault(); modal.style.display = "block"; }
+    span.onclick = () => { modal.style.display = "none"; }
+    window.onclick = (event) => { if (event.target == modal) { modal.style.display = "none"; } }
+
+
+    const langSelect = document.getElementById("lang-switch");
+    let currentLangData = {};
+
+    async function loadLanguage(lang) {
+        try {
+            
+            const response = await fetch('lang.json');
+            const data = await response.json();
+            currentLangData = data[lang];
+            
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if(currentLangData[key]) {
+                    if (el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+                        el.placeholder = currentLangData[key];
+                    } else {
+                        el.textContent = currentLangData[key];
+                    }
+                }
+            });
+            document.documentElement.lang = lang;
+        } catch (error) {
+            console.error("Error loading language JSON:", error);
+        }
     }
 
-    // Listen for dropdown changes
-    langSwitch.addEventListener('change', (e) => {
-        updateLanguage(e.target.value);
+    langSelect.addEventListener("change", (e) => {
+        loadLanguage(e.target.value);
     });
 
-
-    // --- 2. NAVIGATION SHRINK ON SCROLL ---
-    const header = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.style.padding = "5px 0";
-        } else {
-            header.style.padding = "15px 0";
-        }
-    });
-
-
-    // --- 3. LIGHTBOX FUNCTIONALITY ---
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const closeBtn = document.querySelector(".close-lightbox");
-    const galleryImages = document.querySelectorAll(".gallery-img");
-
-    galleryImages.forEach(img => {
-        img.addEventListener("click", () => {
-            lightbox.style.display = "block";
-            lightboxImg.src = img.src;
-        });
-    });
-
-    closeBtn.addEventListener("click", () => {
-        lightbox.style.display = "none";
-    });
-
-    lightbox.addEventListener("click", (e) => {
-        if (e.target !== lightboxImg) {
-            lightbox.style.display = "none";
-        }
-    });
-
-    // --- 4. FORM SUBMISSION ---
-    const contactForm = document.getElementById("contact-form");
-    contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("Message sent! (Note: Connect this to a backend like Formspree to receive real emails)");
-        contactForm.reset();
-    });
+   
+    loadLanguage('de');
 });

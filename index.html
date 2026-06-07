@@ -1,113 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tatiana Lumos | Professional Photographer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <title>Edi Kolgeci | Senior UX Designer & Web Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <header id="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="#home">
-                    <img src="pictures/Tatiana_Lumos_Logo.png" alt="Photographer Logo">
-                </a>
+    <nav class="navbar">
+        <div class="logo">EK<span>.dev</span></div>
+        <ul class="nav-links">
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#about" data-i18n="nav_about">Über mich</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Projekte</a></li>
+        </ul>
+        <div class="controls">
+            <select id="lang-switch">
+                <option value="de">DE</option>
+                <option value="en">EN</option>
+                <option value="cs">CS</option>
+            </select>
+            <a href="#contact" class="btn primary-btn" data-i18n="nav_contact">Kontakt</a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero section">
+        <div class="hero-content hidden">
+            <p class="subtitle" data-i18n="hero_greet">Hallo, ich bin</p>
+            <h1>Edi Kolgeci</h1>
+            <h2 class="typing-text"><span id="typewriter"></span><span class="cursor">|</span></h2>
+            <p class="description" data-i18n="hero_desc">Ich erschaffe digitale Erlebnisse. Von pixelperfektem UX-Design bis hin zu robusten Backend-Architekturen. Ansässig in Prag, weltweit verfügbar.</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn primary-btn" data-i18n="btn_work">Meine Arbeit</a>
+                <a href="https://github.com" target="_blank" class="btn icon-btn"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="btn icon-btn"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <nav class="nav-wrapper">
-                <ul class="nav-links">
-                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
-                    <li><a href="#about" data-i18n="nav_about">About Me</a></li>
-                    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-                </ul>
-                <!-- Language Switcher -->
-                <select id="lang-switch" class="lang-switch">
-                    <option value="en">EN</option>
-                    <option value="cs">CS</option>
-                    <option value="ru">RU</option>
-                </select>
-            </nav>
+        </div>
+        <div class="hero-image hidden">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=800&auto=format&fit=crop" alt="Edi Kolgeci Workspace">
+                <div class="glow-effect"></div>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="hero_title">You are the protagonist of your own story.</h1>
-            <h3 data-i18n="hero_subtitle">Let’s capture the moments that deserve to be remembered.</h3>
+    <section id="about" class="about section">
+        <div class="container hidden">
+            <h2 class="section-title" data-i18n="about_title">Über mich</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about_p1">Mit mehreren Jahren Erfahrung in Frontend- und Backend-Entwicklung baue ich Applikationen von Grund auf – sauber, performant und mit einem kompromisslosen Fokus auf User Experience.</p>
+                    <p data-i18n="about_p2">Wenn ich nicht gerade im Code vertieft bin, findet man mich beim Produzieren von Beats, beim Kochen komplexer Rezepte oder tief in strategischen Gaming-Sessions.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 class="counter" data-target="5">0</h3>
+                        <p data-i18n="stat_exp">Jahre Erfahrung</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="counter" data-target="42">0</h3>
+                        <p data-i18n="stat_projects">Projekte</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills section">
+        <div class="container hidden">
+            <h2 class="section-title" data-i18n="skills_title">Tech Stack</h2>
+            <div class="skills-container">
+                <div class="skill-tag"><i class="fab fa-html5"></i> HTML5</div>
+                <div class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3 / SCSS</div>
+                <div class="skill-tag"><i class="fab fa-js"></i> JavaScript (ES6+)</div>
+                <div class="skill-tag"><i class="fab fa-react"></i> React / Next.js</div>
+                <div class="skill-tag"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="skill-tag"><i class="fas fa-database"></i> SQL / NoSQL</div>
+                <div class="skill-tag"><i class="fab fa-figma"></i> Figma / UX Design</div>
+                <div class="skill-tag"><i class="fab fa-git-alt"></i> Git</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects section">
+        <div class="container hidden">
+            <h2 class="section-title" data-i18n="projects_title">Ausgewählte Projekte</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Photography Portfolio">
+                        <div class="project-links">
+                            <a href="#" class="btn icon-btn"><i class="fab fa-github"></i></a>
+                            <a href="#" class="btn icon-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Lumos Photography Portfolio</h3>
+                        <p data-i18n="proj1_desc">Ein maßgeschneidertes, hochperformantes Portfolio für eine Fotografin. Komplett von Scratch geschrieben, mit dynamischen Bildergalerien.</p>
+                        <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" alt="Quiz App">
+                        <div class="project-links">
+                            <a href="#" class="btn icon-btn"><i class="fab fa-github"></i></a>
+                            <a href="#" class="btn icon-btn"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interactive Quiz App</h3>
+                        <p data-i18n="proj2_desc">Eine kompetitive Quiz-Applikation mit Echtzeit-Auswertung, Ranglisten und einem komplexen State-Management.</p>
+                        <div class="tech-stack"><span>React</span><span>Node.js</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer section">
+        <div class="container hidden">
+            <h2 class="section-title" data-i18n="contact_title">Lass uns reden</h2>
+            <p class="contact-subtitle" data-i18n="contact_desc">Aktuell offen für neue Herausforderungen. Ob es um eine Frage, ein Projekt oder einfach nur einen Kaffee in Prag geht – schreib mir!</p>
+            <a href="mailto:hello@edikolgeci.dev" class="btn primary-btn giant-btn">hello@edikolgeci.dev</a>
             
-            <a href="#portfolio" class="btn" data-i18n="hero_btn">View My Work</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about section-padding">
-        <div class="container about-container">
-            <div class="about-image">
-                <img src="pictures/A3D9AAAB-E01A-4AA0-B974-B013BA46C874.PNG" alt="Photographer">
-            </div>
-            <div class="about-text">
-                <h2 data-i18n="about_title">About Me</h2>
-                <div class="divider"></div>
-                <p data-i18n="about_p1">Tatiana Lumos is a Prague-based photographer creating cinematic portraits and visual stories inspired by emotion, contrast, and inner transformation. Tatiana is my real name. Lumos is a pseudonym that, for me, became a symbol of light, intuition, and the quiet magic hidden within everyday life.  I am inspired by contrasts in all their forms: softness and strength, closeness and distance, light and darkness, beauty and tension. I am drawn to images that hold emotion, ambiguity, and space for interpretation — photographs that invite you not only to look, but to feel.</p>
-                <p data-i18n="about_p2">Whether it's an intimate wedding, a cozy family session, or a creative editorial shoot, my goal is to make you feel comfortable and beautiful. Let's create timeless art together.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Edi Kolgeci. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="#impressum-modal" id="open-impressum" data-i18n="impressum">Impressum & Datenschutz</a>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section-padding">
-        <div class="container">
-            <h2 class="text-center" data-i18n="portfolio_title">Portfolio</h2>
-            <div class="divider center-divider"></div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item"><img src="https://via.placeholder.com/600x400?text=Portfolio+1" alt="Portfolio 1" class="gallery-img"></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/400x600?text=Portfolio+2" alt="Portfolio 2" class="gallery-img"></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/600x400?text=Portfolio+3" alt="Portfolio 3" class="gallery-img"></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/400x600?text=Portfolio+4" alt="Portfolio 4" class="gallery-img"></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/600x600?text=Portfolio+5" alt="Portfolio 5" class="gallery-img"></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/600x400?text=Portfolio+6" alt="Portfolio 6" class="gallery-img"></div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="contact" class="contact section-padding">
-        <div class="container">
-            <h2 class="text-center" data-i18n="contact_title">Get In Touch</h2>
-            <div class="divider center-divider"></div>
-            <p class="text-center contact-subtitle" data-i18n="contact_subtitle">I'd love to hear from you. Fill out the form below to inquire about sessions, pricing, or just to say hi!</p>
-            
-            <form id="contact-form" class="contact-form">
-                <div class="input-group">
-
-                    <input type="text" id="name" name="name" placeholder="Your Name" data-i18n="form_name" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" data-i18n="form_email" required>
-                </div>
-                <div class="input-group">
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" data-i18n="form_message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-submit" data-i18n="form_btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p data-i18n="footer_text">&copy; Karasu</p>
     </footer>
 
-
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+    <div id="impressum-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Impressum</h2>
+            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            <p>Edi Kolgeci<br>
+            Senior UX Designer & Web Developer<br>
+            Prag, Tschechische Republik<br>
+            [Deine genaue Straße und Hausnummer]<br>
+            [PLZ] Prag</p>
+            <p><strong>Kontakt:</strong><br>
+            E-Mail: hello@edikolgeci.dev<br>
+            Telefon: [Deine Telefonnummer]</p>
+            <p><strong>Umsatzsteuer-ID:</strong><br>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+            [Deine USt-ID, falls vorhanden]</p>
+            <h3>Haftung für Inhalte</h3>
+            <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir übernehmen keine Haftung für die Inhalte externer Links.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>

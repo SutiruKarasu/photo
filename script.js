@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let typingSpeed = isDeleting ? 50 : 100;
 
         if (!isDeleting && charIndex === currentPhrase.length) {
-            typingSpeed = 2000; // Pause at end
+            typingSpeed = 2000; 
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            typingSpeed = 500; // Pause before new word
+            typingSpeed = 500; 
         }
 
         setTimeout(type, typingSpeed);
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const target = +counter.getAttribute('data-target');
                         const updateCount = () => {
                             const count = +counter.innerText;
-                            const inc = target / 50; // Speed
+                            const inc = target / 50; 
                             if (count < target) {
                                 counter.innerText = Math.ceil(count + inc);
                                 setTimeout(updateCount, 40);
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         updateCount();
                     });
                 }
-                observer.unobserve(entry.target); // Animates only once
+                observer.unobserve(entry.target); 
             }
         });
     }, observerOptions);
